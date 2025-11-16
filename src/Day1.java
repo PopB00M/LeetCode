@@ -37,7 +37,7 @@ public class Day1 {
         int maxLen = 0;
         for(int right = 0; right < n; right++) {
             hash[chars[right]]++;                  // 入窗口
-            while(hash[chars[left]] > 1){          // 重复了，需要重复移动到left，直到[left,right]中无重复字符
+            while(hash[chars[left]] > 1){          // 重复了，需要从窗口内删除，重复移动到left，直到[left,right]中无重复字符
                 hash[chars[left]]--;               // 比如abbacd，当right指向最后一个a时，left需要从0下标移到2次，[left,right] 变成 [ba];
                 left++;                            // 所以这里是 while，而不是 if
             }
