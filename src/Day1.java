@@ -45,4 +45,35 @@ public class Day1 {
         }
         return maxLen;
     }
+
+
+    public <T extends Number> double sum(T a, T b){
+
+        return a.doubleValue() + b.doubleValue();
+    }
+
+
+    /**
+     * LeetCode 1004 最大连续 1 的个数
+     * 给定一个二进制数组 nums 和一个整数 k，假设最多可以翻转 k 个 0 ，则返回执行操作后 数组中连续 1 的最大个数 。
+     * @param nums
+     * @param k
+     * @return
+     */
+    public int longestOnes(int[] nums, int k) {
+        int max = 0;
+        for(int left = 0,right = 0,zero = 0;right < nums.length;right++){
+            if(nums[right] == 0){
+                zero++;
+            }
+            while(zero > k){            // 当 zero > k时，出窗口
+                if(nums[left++] == 0){  // 无论nums[left] 是否为 0，都要出窗口
+                    zero--;
+                }
+            }
+            max = Math.max(max,right - left + 1);
+        }
+        return max;
+    }
+
 }
